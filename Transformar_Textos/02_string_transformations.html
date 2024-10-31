@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <script src="sources/js/02_string_transformations.js"></script>
+</head>
+
+<body>
+  <script>  
+
+    let ValRadioButtom = 'upper_case';
+    addEventListener('load',inicio,false);
+
+    function inicio(){
+      document.getElementById('original_text').addEventListener('keyup',presion,false);
+    }
+
+    function ValueRadio(name){
+      ValRadioButtom = name;
+      presion();
+    }
+    
+    function presion(){
+      let TextArea1 = document.getElementById('original_text').value;
+      if (ValRadioButtom == 'upper_case'){
+        TextArea1 = TextArea1.toUpperCase();
+      }else if(ValRadioButtom == 'lower_case'){
+        TextArea1 = TextArea1.toLowerCase();
+      }else if(ValRadioButtom == 'capitalize'){
+        let TextArea2 = TextArea1.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase());
+        TextArea1 = TextArea2;
+      }else if(ValRadioButtom == 'camel_case'){
+        let TextArea2 = TextArea1.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase());
+        TextArea2 = TextArea2.split(" ").join("")
+        TextArea1 = TextArea2;
+      }else if(ValRadioButtom == 'mimimi'){
+        let TextArea2 = TextArea1.toLowerCase()
+        TextArea1 = TextArea2.replace(/[aeiou]/g, 'i')
+      }else if(ValRadioButtom == 'reshulon'){
+        TextArea2 = TextArea1;
+        TextArea1 = "";
+        for(i=0; i<TextArea2.length; i++){
+          random = Math.floor(Math.random() * 2);
+          if(random == 0){
+            TextArea1 = TextArea1+TextArea2.substring(i, i+1).toUpperCase();
+          }else if (random == 1){
+            TextArea1 = TextArea1+TextArea2.substring(i, i+1).toLowerCase();
+          }
+        };
+        
+      }
+      document.getElementById('transformed_text').innerHTML=TextArea1;
+    }
+
+  </script>
+
+  <h1>Transformador de cadenas</h1>
+  <form id="main_form" name="main_form">
+    <textarea rows="5" cols="80" name='original_text' id='original_text'>Escribe aquí el texto a transformar</textarea>
+    <br />
+    <input type="radio" id="upper_case" name="transformation" value="upper_case" checked onclick="return ValueRadio('upper_case')">
+    <label for="upper_case">Mayúsculas</label>
+    <input type="radio" id="lower_case" name="transformation" value="lower_case" onclick="return ValueRadio('lower_case')">
+    <label for="lower_case">Minúsculas</label>
+    <input type="radio" id="capitalize" name="transformation" value="capitalize" onclick="return ValueRadio('capitalize')">
+    <label for="capitalize">Capitalizar</label>
+    <input type="radio" id="camel_case" name="transformation" value="camel_case" onclick="return ValueRadio('camel_case')">
+    <label for="camel_case">Camel case</label>
+    <input type="radio" id="mimimi" name="transformation" value="mimimi" onclick="return ValueRadio('mimimi')">
+    <label for="mimimi">Mi mi mi</label>
+    <input type="radio" id="reshulon" name="transformation" value="reshulon" onclick="return ValueRadio('reshulon')">
+    <label for="reshulon">Reshulón</label>
+    <br />
+    <br />
+    <textarea rows="5" cols="80" name='transformed_text' id='transformed_text'>Texto transformado</textarea>
+  </form>
+</body>
+
+</html>

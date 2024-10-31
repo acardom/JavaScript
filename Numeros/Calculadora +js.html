@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <script>
+        let cuenta = prompt("eligue una accion a realizar: RESTAR, SUMAR, DIVIDIR, MULTIPLICAR");
+        var cuenta2 = cuenta.toUpperCase();
+
+        switch (cuenta2) {
+        case 'SUMAR':
+            valor1 = prompt("introduzca el primer valor");
+            valor2 = prompt("introduzca el segundo valor");
+            valor1 = parseFloat(valor1);
+            valor2 = parseFloat(valor2);
+
+            if (isNaN(valor1) || isNaN(valor2)){
+                alert('solo valores numericos');
+            }else{
+                var resultado = valor1+valor2;
+                alert('el resultado de la suma de ' +valor1+ ' + ' +valor2+ ' es: ' +resultado);
+            }
+
+            break;
+
+        case 'RESTAR':
+            valor1 = prompt("introduzca el minuendo");
+            valor2 = prompt("introduzca el sustraendo");
+            valor1 = parseFloat(valor1);
+            valor2 = parseFloat(valor2);
+
+            if (isNaN(valor1) || isNaN(valor2)){
+                alert('solo valores numericos');
+            }else{
+                var resultado = valor1-valor2;
+                alert('el resultado de la resta de ' +valor1+ ' - ' +valor2+ ' es: ' +resultado);
+            }
+
+            break;
+
+        case 'MULTIPLICAR':
+            valor1 = prompt("introduzca el base");
+            valor2 = prompt("introduzca el exponente");
+            valor1 = parseFloat(valor1);
+            valor2 = parseFloat(valor2);
+
+            if (isNaN(valor1) || isNaN(valor2)){
+                alert('solo valores numericos');
+            }else{
+                var resultado = valor1*valor2;
+                alert('el resultado de la multiplicación de ' +valor1+ ' x ' +valor2+ ' es: ' +resultado);
+            }
+
+            break;
+
+        case 'DIVIDIR':
+            valor1 = prompt("introduzca el dividendo");
+            valor2 = prompt("introduzca el divisor");
+            valor1 = parseFloat(valor1);
+            valor2 = parseFloat(valor2);
+
+            if (isNaN(valor1) || isNaN(valor2)){
+                alert('solo valores numericos');
+            }else{
+                var resultado = valor1/valor2;
+                alert('el resultado de la división de ' +valor1+ ' / ' +valor2+ ' es: ' +resultado);
+            }
+
+            break;
+
+        default:
+            alert('DATO INTRODUCIDO NO VALIDO');
+        }
+
+    </script>
+</body>
+
+</html>

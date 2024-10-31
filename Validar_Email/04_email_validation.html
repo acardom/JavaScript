@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <script src="sources/js/common.js"></script>
+  <script src="sources/js/04_email_validation.js"></script>
+</head>
+
+<body>
+
+  <script>
+
+    addEventListener('load',inicio,false);
+
+    function inicio(){
+      document.getElementById('input_mail').addEventListener('keyup',validateEmail,false);
+    }
+
+    function validateEmail() {
+      const emailField = document.getElementById('input_mail');
+      const emailStatus = document.getElementById('validation_label');
+      const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+      if (emailPattern.test(emailField.value)) {
+        emailStatus.textContent = 'VÁLIDO';
+        emailStatus.style.color = 'green';
+      } else {
+        emailStatus.textContent = 'NO VÁLIDO';
+        emailStatus.style.color = 'red';
+      }
+    }
+  </script>
+
+  <h1>Validador de correo electrónico</h1>
+  <form id="main_form" name="main_form">
+    <input type="email" id="input_mail" name="input_mail" placeholder="Escribe aquí tu correo electrónico"/>
+    <label id="validation_label"></label>
+  </form>
+</body>
+
+</html>

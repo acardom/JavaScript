@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <script>
+        let dni = prompt("Give me your DNI");
+
+        var numero
+        var letra2
+        var letra
+        
+        comprobar = /^\d{8}[a-zA-Z]$/;
+ 
+        if(comprobar.test (dni) == true){
+            numero = dni.substr(0,dni.length-1);
+            letra2 = dni.substr(dni.length-1,1);
+            numero = numero % 23;
+            letra='TRWAGMYFPDXBNJZSQVHLCKET';
+            letra=letra.substring(numero,numero+1);
+            if (letra!=letra2.toUpperCase()) {
+            alert('la letra del DNI no se corresponde');
+            }else{
+            alert('DNI correcto');
+            }
+        }else{
+            alert('formato no válido');
+        }
+
+    </script>
+</body>
+
+</html>

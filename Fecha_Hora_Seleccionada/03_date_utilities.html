@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <script src="sources/js/common.js"></script>
+  <script src="sources/js/03_date_utilities.js"></script>
+</head>
+
+<body>
+
+  <script>
+    
+    addEventListener('change', () => {
+      select = document.getElementById("dates");
+      let valor = select.value;
+      if (valor == "date_five_mins_ago"){
+        FiveMinutes();
+      }else if (valor == "date_now"){
+        Now();
+      }else if (valor == "date_next_week"){
+        OneWeek();
+      }
+    });
+  
+    const FiveMinutes = () => {
+      removeAllChildNodes("output_p");
+      const currentDate = new Date();
+      const fiveMinutesFromNow = new Date(currentDate.getTime() + 5 * 60 * 1000);
+      const currentYear = fiveMinutesFromNow.getFullYear();
+      const currentMonth = fiveMinutesFromNow.getMonth();
+      const currentDay = fiveMinutesFromNow.getDate();
+      const currentHour = fiveMinutesFromNow.getHours();
+      const currentMinute = fiveMinutesFromNow.getMinutes();
+      const currentSecond = fiveMinutesFromNow.getSeconds();
+      ouputText = `${currentYear}/${currentMonth}/${currentDay}  ${currentHour}:${currentMinute}:${currentSecond}`;
+      document.getElementById("output_p").appendChild(document.createTextNode(ouputText));
+    }
+
+    const OneWeek = () => {
+      removeAllChildNodes("output_p");
+      const currentDate = new Date();
+      const currentYear = currentDate.getFullYear();
+      const firstDayOfYear = new Date(currentYear, 0, 1);
+      const dayOfWeek = firstDayOfYear.getDay();
+      const firstThursdayOfYear = dayOfWeek <= 3 ? 7 - (3 - dayOfWeek) : dayOfWeek - 3;
+      const firstThursdayOfYearTimestamp = firstDayOfYear.getTime() + firstThursdayOfYear * 24 * 60 * 60 * 1000;
+      const currentTimestamp = currentDate.getTime();
+      const currentWeek = Math.ceil((currentTimestamp - firstThursdayOfYearTimestamp) / 604800000) + 1;
+      ouputText = `${currentYear}-${currentWeek}`;
+      document.getElementById("output_p").appendChild(document.createTextNode(ouputText));
+
+    }
+
+    const Now = () => {
+      removeAllChildNodes("output_p");
+      const currentDate = new Date();
+      const dayOfWeek = currentDate.
+      toLocaleDateString('default', {weekday: 'long'});
+      const month = currentDate.toLocaleDateString('default', {month: 'long'});
+      const day = currentDate.getDate();
+      const year = currentDate.getFullYear();
+      const currentHour = currentDate.getHours();
+      const currentMinute = currentDate.getMinutes();
+      const currentSecond = currentDate.getSeconds();
+      ouputText = `Hoy es ${dayOfWeek}, ${day} de ${month} de ${year} y son las ${currentHour}:${currentMinute}:${currentSecond}`;
+      document.getElementById("output_p").appendChild(document.createTextNode(ouputText));
+    }
+  </script>
+
+  <h1>Utilidades de fecha</h1>
+  <form id="main_form" name="main_form">
+    <label for="dates">Selecciona una fecha para consultar:</label>
+    <select name="dates" id="dates" >
+      <option disabled selected value> -- Selecciona una opción -- </option>
+      <option value="date_now">Ahora</option>
+      <option value="date_five_mins_ago">Hace 5 minutos</option>
+      <option value="date_next_week">Semana del año próxima</option>
+    </select>
+  </form>
+  <p id="output_p"></p>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <script src="sources/js/common.js"></script>
+  <script src="sources/js/01_number_base_conversor.js"></script>
+</head>
+
+<body>
+  <script>
+    const convertToBase = (baseName, base) => {
+      removeAllChildNodes("output_p");
+      let inputFieldData = document.getElementById("input_number").value;
+      let ouputText = `No puedo procesar este valor: ${inputFieldData}`;
+      if (checkInputNumericIntGreaterOrEqualThanZero(inputFieldData)) {
+        ouputText = `El resultado de convertir ${inputFieldData} a ${baseName} es ${Number(inputFieldData).toString(base)}`;
+      }
+      document.getElementById("output_p").appendChild(document.createTextNode(ouputText));
+    };
+
+    const removeAllChildNodes = (elementId) => {
+      let elementNode = document.getElementById(elementId);
+      while (elementNode.firstChild) {
+        elementNode.removeChild(elementNode.firstChild);
+      }
+    };
+
+    const convertToBinary = () => convertToBase("binario", 2);
+    const convertToOctal = () => convertToBase("octal", 8);
+    const convertToHexadecimal = () => convertToBase("hexadecimal", 16);
+  </script>
+  <h1>Conversor de base numérica</h1>
+  <form id="main_form" name="main_form">
+    <label>Introduce un número entero en mayor o igual que cero en base decimal</label>
+    <input id="input_number" name="input_number" type="text" />
+    <br />
+    <input id="button_base_2" type="button" value="Convertir a binario" onclick="return convertToBinary()" />
+    <input id="button_base_8" type="button" value="Convertir a octal" onclick="return convertToOctal()" />
+    <input id="button_base_16" type="button" value="Convertir a hexadecimal" onclick="return convertToHexadecimal()" />
+  </form>
+  <p id="output_p"></p>
+</body>
+
+</html>

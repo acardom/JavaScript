@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <script>
+      const INPUTMSG = "Introduce un número entero para hacer la cuenta";
+      const ERRORMSG = "No puedo procesar el valor introducido";
+      const OUTPUTMSG = "Contando...";
+      let inputValue = Number(prompt(INPUTMSG));
+
+      if (!isNaN(inputValue) && inputValue > 0 && inputValue % 1 === 0) {
+        let currentNumber = 1;
+        let countMessage = "";
+        while (currentNumber <= inputValue) {
+          countMessage = `${countMessage} ${currentNumber}`;
+          currentNumber++;
+        }
+        document.write(`${OUTPUTMSG}${countMessage}`);
+      } else {
+        document.write(`${ERRORMSG}: ${inputValue}`);
+      }
+    </script>
+  </body>
+</html>

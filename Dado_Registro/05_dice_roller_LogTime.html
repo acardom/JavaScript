@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <script src="sources/js/05_dice_roller.js"></script>
+</head>
+
+<body>
+
+  <script>
+
+    function analizer(num) {
+      let isChecked = document.getElementById('keep_log').checked;
+      if (!(isChecked)){
+        
+      }else if (num == 1){
+        save(num);
+      }else if (num == 2){
+        save(num);
+      }
+    }
+
+    function save(numb){
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth(); 
+      const day = currentDate.getDate();
+      const hours = currentDate.getHours();
+      const minutes = currentDate.getMinutes();
+      const seconds = currentDate.getSeconds();
+
+      if (numb == 1){
+        const randomNumber = Math.floor(Math.random() * 6) + 1;
+        document.getElementById("dice_1_result").src=`sources/img/D6-${randomNumber}.png`;
+        ouputText = `${day}/${month}/${year}, ${hours}:${minutes}:${seconds} Se ha lanzado ${numb} dado con un resultado de ${randomNumber} `;
+        document.getElementById("log_area").appendChild(document.createTextNode(ouputText));
+      }else if (numb == 2){
+        const randomNumber = Math.floor(Math.random() * 6) + 1;
+        const randomNumber2 = Math.floor(Math.random() * 6) + 1;
+        document.getElementById("dice_1_result").src=`sources/img/D6-${randomNumber}.png`;
+        document.getElementById("dice_2_result").src=`sources/img/D6-${randomNumber2}.png`;
+        const PlusNumbers = randomNumber+randomNumber2;
+        ouputText = `${day}/${month}/${year}, ${hours}:${minutes}:${seconds} Se ha lanzado ${numb} dado con un resultado de ${PlusNumbers} `;
+        document.getElementById("log_area").appendChild(document.createTextNode(ouputText));
+      }
+      ;
+    }
+  </script>
+
+  <h1>Lanzador de dados</h1>
+  <div style=" display: inline-block; width: 500px;">
+    <div style="float: left" class="dice">
+      <br/><br/>
+      <input id="One" type="button" value="🎲" onclick="return analizer(1)" />
+      <br/><br/>
+      <input id="Two" type="button" value="🎲🎲" onclick="return analizer(2)" />
+      <br/><br/>
+      <input id="keep_log" type="checkbox" checked/>
+      <label for="keep_log">Mostrar log en pantalla</label>
+    </div>
+    <div style=" float: right;">
+      <img id="dice_2_result" src="" style="height: 100px;">
+      <img id="dice_1_result" src="" style="height: 100px;">
+    </div>
+  </div>
+  <div style="width: 500px;">
+    <textarea rows="5" style="width: 490px;" name='log_area' id='log_area' readonly></textarea>
+  </div>
+</body>
+
+</html>
