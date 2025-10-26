@@ -186,11 +186,11 @@ input[name="favourite"]:hover {
   transform: scale(1.2);
 }
 
-/* Buscador estilo Netflix */
+/* Buscador responsive y centrado */
 #searchBox {
   width: 100%;
   max-width: 500px;
-  margin: 100px auto 10px auto;
+  margin: 30px auto 10px auto;
   display: block;
   padding: 14px 18px;
   border-radius: 30px;
@@ -225,6 +225,7 @@ input[name="favourite"]:hover {
   border-bottom: 1px solid #232323;
   transition: background 0.2s;
   font-size: 1.05rem;
+  background: transparent;
 }
 #results li:last-child {
   border-bottom: none;
@@ -319,6 +320,27 @@ input[name="favourite"]:hover {
   }
   #slider-container .slick-arrow {
     display: none !important;
+  }
+  .container {
+    max-width: 100% !important;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #searchBox {
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 12px 12px;
+    margin: 20px auto 8px auto;
+  }
+  #results {
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    font-size: 0.98rem;
+  }
+  #movieInfo {
+    max-width: 100%;
+    margin: 20px auto 0 auto;
   }
 }
 
